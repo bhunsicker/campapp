@@ -1,4 +1,13 @@
 import 'package:flutter/material.dart';
+import 'package:photo_manager/photo_manager.dart';
+import 'calendarpage.dart';
+import 'homepage.dart';
+import 'photopage.dart';
+import 'chatpage.dart';
+import 'locatorpage.dart';
+import 'settingspage.dart';
+
+// 220035809284-jr3l135tnvsedi27rab9rcmvdmt8uuud.apps.googleusercontent.com
 
 void main() {
   runApp(CampApp());
@@ -18,88 +27,11 @@ class CampApp extends StatelessWidget {
   }
 }
 
-class HomePage extends StatelessWidget {
-  HomePage({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: AppDrawer(),
-      appBar: AppBar(
-        title: Text('Camp App Home Page'),
-      ),
-    );
-  }
-}
-
-class CalendarPage extends StatelessWidget {
-  CalendarPage({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: AppDrawer(),
-      appBar: AppBar(
-        title: Text('Camp App Calendar Page'),
-      ),
-    );
-  }
-}
-
-class PhotoPage extends StatelessWidget {
-  PhotoPage({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: AppDrawer(),
-      appBar: AppBar(
-        title: Text('Camp App Photo Page'),
-      ),
-    );
-  }
-}
-
-class ChatPage extends StatelessWidget {
-  ChatPage({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: AppDrawer(),
-      appBar: AppBar(
-        title: Text('Camp App Chat Page'),
-      ),
-    );
-  }
-}
-
-class LocatorPage extends StatelessWidget {
-  LocatorPage({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: AppDrawer(),
-      appBar: AppBar(
-        title: Text('Camp App Locator Page'),
-      ),
-    );
-  }
-}
-
-class SettingsPage extends StatelessWidget {
-  SettingsPage({Key? key}) : super(key: key);
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      drawer: AppDrawer(),
-      appBar: AppBar(
-        title: Text('Camp App Settings Page'),
-      ),
-    );
-  }
-}
-
 class AppDrawer extends StatelessWidget {
   AppDrawer({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    PermissionState permitted;
     return Drawer(
         child: Column(children: <Widget>[
       Expanded(
@@ -120,8 +52,12 @@ class AppDrawer extends StatelessWidget {
           ListTile(
             leading: Icon(Icons.photo_album),
             title: Text('Upload Pictures'),
-            onTap: () => Navigator.push(context,
-                new MaterialPageRoute(builder: (context) => new PhotoPage())),
+            onTap: () async => {
+              // permitted = await PhotoManager.requestPermissionExtend();
+              // if (!permitted.isAuth) return;
+              Navigator.push(context,
+                  new MaterialPageRoute(builder: (context) => new PhotoPage())),
+            },
           ),
           ListTile(
             leading: Icon(Icons.chat_bubble),
