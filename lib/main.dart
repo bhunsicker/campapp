@@ -6,10 +6,12 @@ import 'photopage.dart';
 import 'chatpage.dart';
 import 'locatorpage.dart';
 import 'settingspage.dart';
+import 'package:flutter_settings_screens/flutter_settings_screens.dart';
 
 // 220035809284-jr3l135tnvsedi27rab9rcmvdmt8uuud.apps.googleusercontent.com
 
-void main() {
+Future<void> main() async {
+  await Settings.init(cacheProvider: SharePreferenceCache());
   runApp(CampApp());
 }
 
@@ -36,11 +38,14 @@ class AppDrawer extends StatelessWidget {
         child: Column(children: <Widget>[
       Expanded(
         child: ListView(padding: EdgeInsets.zero, children: <Widget>[
-          UserAccountsDrawerHeader(
-            accountEmail: Text('whusickeriii@satx.rr.com'),
-            accountName: Text('Bill Hunsicker'),
-            currentAccountPicture: Text('Picture Here'),
-          ),
+          // UserAccountsDrawerHeader(
+          //   accountEmail:
+          //       Settings.getValue("accountEmail", defaultValue: Text('Email')),
+          //   accountName:
+          //       Settings.getValue("accountName", defaultValue: Text('Name')),
+          //   currentAccountPicture: Settings.getValue("accountPicture",
+          //       defaultValue: Text('Picture')),
+          // ),
           ListTile(
             leading: Icon(Icons.calendar_month),
             title: Text('Calendar'),

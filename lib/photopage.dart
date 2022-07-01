@@ -44,10 +44,9 @@ class _GalleryState extends State<Gallery> {
         appBar: AppBar(
           title: const Text('Gallery'),
         ),
-        body: Column(children: [
-          Container(
-              height: MediaQuery.of(context).size.height - 50,
-              width: MediaQuery.of(context).size.width,
+        body: Column(
+          children: <Widget>[
+            Expanded(
               child: GridView.builder(
                 //shrinkWrap: true,
                 gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
@@ -58,17 +57,20 @@ class _GalleryState extends State<Gallery> {
                 itemBuilder: (_, index) {
                   return AssetThumbnail(asset: assets[index]);
                 },
-              )),
-          Container(
-              height: 50,
-              width: MediaQuery.of(context).size.width,
+              ),
+            ),
+            Container(
+                child: Align(
+              alignment: FractionalOffset.bottomCenter,
               child: ElevatedButton(
                 onPressed: () {
                   print("Pressed");
                 },
                 child: Text("Bottom Button"),
-              ))
-        ]));
+              ),
+            ))
+          ],
+        ));
   }
 
   _fetchAssets() async {
